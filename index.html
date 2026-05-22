@@ -81,30 +81,6 @@
             transform: rotate(180deg);
         }
 
-        /* Encart temporaire pour remplacer les vidéos trop lourdes */
-        .video-placeholder-box {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-glass);
-            border-radius: 12px;
-            padding: 40px 20px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .video-placeholder-box i {
-            font-size: 2.5rem;
-            color: var(--neon-pink);
-            margin-bottom: 10px;
-            display: inline-block;
-        }
-        .video-placeholder-box h4 {
-            margin: 5px 0;
-            color: var(--text-light);
-        }
-        .video-placeholder-box p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
         /* --- STYLE DU BOUTON RETOUR EN HAUT --- */
         #backToTop {
             position: fixed;
@@ -271,13 +247,13 @@
                 
                 <div class="project-card glass-card" onclick="openModal('modal-video')">
                     <div class="project-overlay"></div>
-                    <div class="photo-fallback-visual" style="background: linear-gradient(45deg, #111, #ff007f33);">
-                        <i class="ri-clapperboard-line" style="font-size: 3rem; color: var(--neon-pink);"></i>
+                    <div class="photo-fallback-visual" style="background: rgba(255,255,255,0.02); display: flex; align-items: center; justify-content: center; height: 100%; min-height: 200px;">
+                        <i class="ri-vidicon-line" style="font-size: 3rem; color: var(--neon-pink);"></i>
                     </div>
                     <div class="project-content">
                         <h3>Régie Vidéo & Production</h3>
-                        <p>Captations directes, gestion de flux et montages courts.</p>
-                        <div class="tags">🎬 ACCÉDER AUX RÉALISATIONS VIDÉO</div>
+                        <p>Gestion d'espace régie, coordination d'équipes et captation direct.</p>
+                        <div class="tags">🎬 ESPRIT DE RÉGIE & LOGISTIQUE VIDEO</div>
                     </div>
                 </div>
 
@@ -323,27 +299,7 @@
             <div class="modal-body">
                 <h2>Créations Vidéo & Régie Live 🎥</h2>
                 <div class="modal-scroll">
-                    
-                    <p class="video-label" style="color: var(--neon-pink); margin-bottom: 15px;">🎙️ Production Média & Showreel Technique</p>
-                    
-                    <div class="video-placeholder-box">
-                        <i class="ri-video-chat-line"></i>
-                        <h4>Production Récente (Live Event & Mode)</h4>
-                        <p>Contenu vidéo en cours de liaison externe (Format Reels / Dynamique)</p>
-                    </div>
-
-                    <div class="video-placeholder-box">
-                        <i class="ri-tv-2-line"></i>
-                        <h4>Régie Terrain & Captation Multi-Caméras</h4>
-                        <p>Extrait technique de flux vidéo en direct</p>
-                    </div>
-
-                    <div class="video-placeholder-box">
-                        <i class="ri-film-line"></i>
-                        <h4>Short Content & Édition Réseaux Sociaux</h4>
-                        <p>Montages courts optimisés pour l'engagement des plateformes</p>
-                    </div>
-                    
+                    <p style="text-align: center; color: var(--text-muted); margin-bottom: 20px;">Gestion des flux, coordination technique multi-caméras et supervision de régie vidéo.</p>
                 </div>
             </div>
         </div>
@@ -368,9 +324,17 @@
                     ✨ Mes Créations Graphiques & Éditions Studio
                 </h3>
                 <div class="modal-gallery" style="margin-bottom: 20px;">
+                    <img src="images/WhatsApp Image 2026-05-20 at 19.36.48.jpeg" alt="Création Récente 1">
                     <img src="images/ekhj3.jpeg" alt="Création Récente 2">
+                    <img src="images/Plan de travail 1.jpg.jpeg" alt="Plan de travail 1">
+                    <img src="images/Plan de travail 2.png" alt="Plan de travail 2">
+                    <img src="images/Plan de travail 15.jpg" alt="Plan de travail 15">
+                    <img src="images/wake up partenership.png" alt="Affiche Partenariat Wake Up">
                     <img src="images/GRADUATED.png" alt="Visuel Célébration Diplôme">
-                    <img src="images/8 mars-.jpg" alt="Affiche 8 Mars">
+                    <img src="images/Kakemono.png" alt="Format Kakemono Studio">
+                    <img src="images/IMG_6645.JPG.jpeg" alt="Création Graphique Studio 6645">
+                    <img src="images/IMG_3575.PNG" alt="Création Graphique Studio 3575">
+                    <img src="images/IMG_3576.PNG" alt="Création Graphique Studio 3576">
                 </div>
 
                 <div class="subfolder-container">
@@ -380,7 +344,9 @@
                     </div>
                     <div class="subfolder-content">
                         <div class="modal-gallery">
-                            <img src="images/birthday presi.png" alt="Affiche Anniversaire Présidente">
+                            <img src="images/BIRTHDAY PRESI.png" alt="Affiche Anniversaire Présidente">
+                            <img src="images/RDEA birthday.jpg" alt="Affiche Anniversaire Réserve de l'Éternel">
+                            <img src="images/mother's day.png" alt="Affiche Fête des Mères">
                         </div>
                     </div>
                 </div>
@@ -391,6 +357,8 @@
                 <div class="modal-gallery">
                     <img src="images/gtw affiche.png" alt="Affiche Get The Way">
                     <img src="images/GTW DECLI.png" alt="Déclinaisons d'identité visuelle GTW">
+                    <img src="images/8 mars-.jpg" alt="Affiche 8 Mars">
+                    <img src="images/VALENTINE'S PACKAGE.png" alt="Visuel Package Saint-Valentin">
                 </div>
             </div>
         </div>
@@ -404,6 +372,10 @@
                 <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 25px;">L'univers visuel et la carte de mon entreprise culinaire.</p>
                 <div class="modal-gallery">
                     <img src="images/Logo du restaurant Yummy & Tasty.png" alt="Logo Officiel Yummy & Tasty">
+                    <img src="images/menu yat.jpg" alt="Carte Menu Officiel Yummy & Tasty">
+                    <img src="images/Yummy Projet Scolaire.png" alt="Présentation Graphique Yummy">
+                    <img src="images/plat1.jpg" alt="Création Culinaire 1">
+                    <img src="images/plat2.jpg" alt="Création Culinaire 2">
                 </div>
             </div>
         </div>
@@ -417,6 +389,9 @@
                 <p style="text-align: center; color: var(--text-muted); font-style: italic; margin-bottom: 25px;">Douceur des teintes • Esthétique minimale</p>
                 <div class="modal-gallery">
                     <img src="images/WhatsApp Image 2026-05-19 at 21.39.12.jpeg" alt="Capture Photographie Originale Campbell">
+                    <img src="images/photo1.jpg" alt="Capture Photo 1">
+                    <img src="images/photo2.jpg" alt="Capture Photo 2">
+                    <img src="images/photo3.jpg" alt="Capture Photo 3">
                 </div>
             </div>
         </div>
@@ -480,6 +455,8 @@
             const modal = document.getElementById(id);
             modal.classList.remove('active');
             document.body.style.overflow = 'auto';
+            const videos = document.querySelectorAll(`#${id} video`);
+            videos.forEach(v => v.pause());
             
             const subfolder = modal.querySelector('.subfolder-container');
             if (subfolder) subfolder.classList.remove('active');
