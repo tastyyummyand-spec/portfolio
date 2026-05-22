@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CREATIVE STUDIO | Aurore Campbell</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;500;600;700&family=Alegreya+Sans:ital,wght=1,900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .hero-portrait img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover !important;
+            object-position: center top !important;
+        }
+        /* Ajustement de la grille des modals pour afficher les éléments côte à côte */
+        .modal-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+            gap: 20px !important;
+            align-items: start;
+        }
+        .modal-gallery img {
+            width: 100%;
+            height: auto;
+            object-fit: contain !important;
+            border-radius: 8px;
+            border: 1px solid var(--border-glass);
+            background: rgba(255,255,255,0.02);
+        }
+
+        /* --- STYLE DU SYSTÈME SOUS-DOSSIER / ACCORDÉON --- */
+        .subfolder-container {
+            margin: 20px 0;
+            border: 1px dashed var(--border-glass);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.01);
+            overflow: hidden;
+        }
+        .subfolder-header {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .subfolder-header:hover {
+            background: rgba(255, 0, 127, 0.05);
+        }
+        .subfolder-header h4 {
+            margin: 0;
+            font-size: 1rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .subfolder-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+            color: var(--neon-pink);
+        }
+        .subfolder-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+            padding: 0 20px;
+        }
+        .subfolder-container.active .subfolder-content {
+            max-height: 2000px;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 20px;
+        }
+        .subfolder-container.active .subfolder-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Encart temporaire pour remplacer les vidéos trop lourdes */
+        .video-placeholder-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            padding: 40px 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .video-placeholder-box i {
+            font-size: 2.5rem;
+            color: var(--neon-pink);
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        .video-placeholder-box h4 {
+            margin: 5px 0;
+            color: var(--text-light);
+        }
+        .video-placeholder-box p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* --- STYLE DU BOUTON RETOUR EN HAUT --- */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 45px;
+            height: 45px;
+            background: var(--neon-pink, #ff007f);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            z-index: 9999;
+            box-shadow: 0 4px 15px rgba(255, 0, 127, 0.4);
+        }
+        #backToTop.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        #backToTop:hover {
+            transform: translateY(-5px);
+            background: #fff;
+            color: var(--neon-pink, #ff007f);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
+        }
+    </style>
+</head>
+<body class="dark-mode">
+
+    <div id="loader">
+        <div class="loader-content">
+            <span class="rec-dot"></span>
+            <h1>CREATIVE STUDIO</h1>
+            <p>스튜디오 • AURORE CAMPBELL</p>
+        </div>
+    </div>
+
+    <nav class="glass-navbar">
+        <div class="container">
+            <a href="#home" class="logo">
+                CREATIVE<span>STUDIO</span> ✨
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Accueil</a></li>
+                <li><a href="#about">Moi</a></li>
+                <li><a href="#skills">Savoir-faire</a></li>
+                <li><a href="#projects">Mon Univers</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="ri-menu-line"></i>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero fullscreen fade-in">
+        <div class="container hero-layout">
+            <div class="hero-text">
+                <div class="badge fade-item">✦ WELCOME TO CREATIVE STUDIO ✦</div>
+                <h1 class="grunge-title neon-text fade-item">
+                    AURORE <br>
+                    <span>CAMPBELL</span> <br>
+                    VISUAL EMPIRE
+                </h1>
+                <p class="fade-item">Créatrice visuelle, étudiante en Arts et Images Numériques, régisseuse vidéo et entrepreneure. Autodidacte passionnée, je mets mon apprentissage rapide au service de projets iconiques et de l'œuvre de Dieu.</p>
+                <div class="hero-btns fade-item">
+                    <a href="#projects" class="btn btn-primary">ENTRER DANS LE STUDIO 🎀</a>
+                </div>
+            </div>
+            
+            <div class="hero-portrait fade-item">
+                <div class="portrait-outline">
+                    <img src="images/WhatsApp Image 2025-12-09 à 07.07.41_c1ea75e9.png" alt="Aurore Campbell">
+                    <div class="osd-ui top-osd"><i class="ri-git-repository-line"></i> ISTC POLYTECHNIQUE</div>
+                    <div class="osd-ui bot-osd">COMMUNICATION VISUELLE <span class="rec-dot"></span></div>
+                    <div class="soft-icons">
+                        <i class="ri-camera-lens-line" title="Photographie"></i>
+                        <i class="ri-heart-pulse-line" title="Service Église"></i>
+                        <i class="ri-vidicon-line" title="Régisseuse Vidéo"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section fullscreen reveal">
+        <div class="container">
+            <h2 class="section-title reveal-item">안녕하세요 • Qui suis-je ?</h2>
+            <div class="about-layout reveal-item">
+                <div class="about-card glass-card">
+                    <p>Moi, c'est <strong>Aurore Campbell</strong>. Esprit libre, slasheuse et autodidacte à forte capacité d’apprentissage. Actuellement étudiante en <strong>Arts et Images Numériques</strong>, je perfectionne mes compétences techniques pour fusionner rigueur académique et créativité brute. De la direction artistique au stylisme, je transforme chaque vision en un impact visuel mémorable.</p>
+                    
+                    <p style="margin-top: 18px; border-left: 3px solid var(--neon-pink); padding-left: 15px; color: var(--text-light); font-size: 0.95rem;">
+                        <strong>⛪ Foi, Service & Dévotion :</strong> Mettre mes compétences visuelles au service du Royaume éternel est mon plus grand honneur. Je gère activement la <strong>direction artistique et la communication visuelle de mon église</strong>, et je sers fièrement au sein de la <strong>Réserve de l'Éternel</strong> pour soutenir l'œuvre de Dieu avec excellence.
+                    </p>
+
+                    <p style="margin-top: 18px; border-left: 3px solid var(--neon-pink); padding-left: 15px; color: var(--text-light); font-size: 0.95rem;">
+                        <strong>🇰🇷 K-Aesthetic & Food Business :</strong> Passionnée par la culture coréenne et l'art culinaire, j'associe mon sens de l'esthétique épurée à mes projets en tant qu'entrepreneure dans la restauration avec <strong>Yummy & Tasty</strong>.
+                    </p>
+                </div>
+                <div class="valeurs reveal-item">
+                    <div class="valeur-item"><i class="ri-heart-3-line"></i> SERVICE & RÉSERVE</div>
+                    <div class="valeur-item"><i class="ri-graduation-cap-line"></i> ARTS & IMAGES NUMÉRIQUES</div>
+                    <div class="valeur-item"><i class="ri-flashlight-line"></i> APPRENTISSAGE ÉCLAIR</div>
+                    <div class="valeur-item"><i class="ri-shield-user-line"></i> ESPRIT ENTREPRENEUR</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section fullscreen reveal">
+        <div class="container">
+            <h2 class="section-title reveal-item">Mes Multiples Facettes</h2>
+            <div class="skills-grid reveal-item">
+                
+                <div class="skill-card glass-card">
+                    <i class="ri-vidicon-2-line skill-icon"></i>
+                    <h3>IMAGE & VIDEO REGIE</h3>
+                    <ul>
+                        <li><span class="check-icon">✦</span> Étudiante en Arts & Images Numériques (Théorie & Technique)</li>
+                        <li><span class="check-icon">✦</span> Régisseuse vidéo freelance (Captation direct, gestion multi-cam)</li>
+                        <li><span class="check-icon">✦</span> Photographie studio, gestion de la lumière & étalonnage</li>
+                        <li><span class="check-icon">✦</span> Infographie & identités visuelles (Affiches, logos, branding)</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-card glass-card">
+                    <i class="ri-heart-pulse-line skill-icon"></i>
+                    <h3>MINISTÈRE & SERVICE</h3>
+                    <ul>
+                        <li><span class="check-icon">✦</span> Gestion de la communication digitale et visuelle à l'église</li>
+                        <li><span class="check-icon">✦</span> Engagement et service actif à la Réserve de l'Éternel</li>
+                        <li><span class="check-icon">✦</span> Création de visuels d'impact pour les événements chrétiens</li>
+                        <li><span class="check-icon">✦</span> Esprit de corps, discipline technique et intégrité</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-card glass-card">
+                    <i class="ri-handbag-line skill-icon"></i>
+                    <h3>BUSINESS & LABS</h3>
+                    <ul>
+                        <li><span class="check-icon">✦</span> Entrepreneure culinaire & Fondatrice de Yummy & Tasty</li>
+                        <li><span class="check-icon">✦</span> Personal Shopper & Curation de style de luxe (GET THE WAY)</li>
+                        <li><span class="check-icon">✦</span> En cours d'apprentissage : Post-production sur Premiere Pro</li>
+                        <li><span class="check-icon">✦</span> Culture & Langue Coréenne / 한국어 (Niveau Débutant)</li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section fullscreen reveal">
+        <div class="container">
+            <h2 class="section-title reveal-item">Les Projets du Studio</h2>
+            <div class="projects-grid reveal-item">
+                
+                <div class="project-card glass-card" onclick="openModal('modal-video')">
+                    <div class="project-overlay"></div>
+                    <div class="photo-fallback-visual" style="background: linear-gradient(45deg, #111, #ff007f33);">
+                        <i class="ri-clapperboard-line" style="font-size: 3rem; color: var(--neon-pink);"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Régie Vidéo & Production</h3>
+                        <p>Captations directes, gestion de flux et montages courts.</p>
+                        <div class="tags">🎬 ACCÉDER AUX RÉALISATIONS VIDÉO</div>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card" onclick="openModal('modal-shopper')">
+                    <div class="project-overlay"></div>
+                    <img src="images/gtw affiche.png" alt="Affiches Graphiques & Design">
+                    <div class="project-content">
+                        <h3>Infographie & Design</h3>
+                        <p>Affiches, Kakemonos, projets d'école et direction artistique.</p>
+                        <div class="tags">🎨 VOIR LES AFFICHES, ÉTALON & KAKEMONOS</div>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card" onclick="openModal('modal-food')">
+                    <div class="project-overlay"></div>
+                    <img src="images/Logo du restaurant Yummy & Tasty.png" alt="Logo Yummy & Tasty">
+                    <div class="project-content">
+                        <h3>Yummy & Tasty ✨</h3>
+                        <p>Mon entreprise de restauration : univers gastro chic, identité et menu officiel.</p>
+                        <div class="tags">🍳 LOGO, PLATS & CARTE MENU YAT</div>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card" onclick="openModal('modal-photo')">
+                    <div class="project-overlay"></div>
+                    <div class="photo-fallback-visual">
+                        <i class="ri-camera-3-line"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Photographie Studio</h3>
+                        <p>Traitement des teintes, captures de lumière et sensibilité visuelle.</p>
+                        <div class="tags">📸 ACCÉDER À MA GALERIE</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div id="modal-video" class="modal" onclick="closeModalOnBackdrop(event, 'modal-video')">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-video')">&times;</span>
+            <div class="modal-body">
+                <h2>Créations Vidéo & Régie Live 🎥</h2>
+                <div class="modal-scroll">
+                    
+                    <p class="video-label" style="color: var(--neon-pink); margin-bottom: 15px;">🎙️ Production Média & Showreel Technique</p>
+                    
+                    <div class="video-placeholder-box">
+                        <i class="ri-video-chat-line"></i>
+                        <h4>Production Récente (Live Event & Mode)</h4>
+                        <p>Contenu vidéo en cours de liaison externe (Format Reels / Dynamique)</p>
+                    </div>
+
+                    <div class="video-placeholder-box">
+                        <i class="ri-tv-2-line"></i>
+                        <h4>Régie Terrain & Captation Multi-Caméras</h4>
+                        <p>Extrait technique de flux vidéo en direct</p>
+                    </div>
+
+                    <div class="video-placeholder-box">
+                        <i class="ri-film-line"></i>
+                        <h4>Short Content & Édition Réseaux Sociaux</h4>
+                        <p>Montages courts optimisés pour l'engagement des plateformes</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-shopper" class="modal" onclick="closeModalOnBackdrop(event, 'modal-shopper')">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-shopper')">&times;</span>
+            <div class="modal-body">
+                <h2>Infographie Freelance & Créations Graphiques 🎨</h2>
+                
+                <h3 style="color: var(--neon-pink); font-size: 1.1rem; margin: 25px 0 15px 0; font-family: var(--font-title); text-align: left; border-bottom: 1px solid var(--border-glass); padding-bottom: 5px;">
+                    🎓 Projet d'École • Édition ÉTALON (ISTC)
+                </h3>
+                <div class="modal-gallery" style="margin-bottom: 35px;">
+                    <img src="images/etalón.jpg" alt="Dépliant Étalon - Partie 1">
+                    <img src="images/etal'on 2.jpg" alt="Dépliant Étalon - Partie 2">
+                    <img src="images/KAKEMONO ETAL'ON.png" alt="Grand Format Kakemono Étalon">
+                </div>
+
+                <h3 style="color: var(--neon-pink); font-size: 1.1rem; margin: 25px 0 15px 0; font-family: var(--font-title); text-align: left; border-bottom: 1px solid var(--border-glass); padding-bottom: 5px;">
+                    ✨ Mes Créations Graphiques & Éditions Studio
+                </h3>
+                <div class="modal-gallery" style="margin-bottom: 20px;">
+                    <img src="images/ekhj3.jpeg" alt="Création Récente 2">
+                    <img src="images/GRADUATED.png" alt="Visuel Célébration Diplôme">
+                    <img src="images/8 mars-.jpg" alt="Affiche 8 Mars">
+                </div>
+
+                <div class="subfolder-container">
+                    <div class="subfolder-header" onclick="toggleSubfolder(this)">
+                        <h4><i class="ri-folder-zip-line"></i> Archives & Événements Spécifiques 📂</h4>
+                        <i class="ri-arrow-down-s-line subfolder-icon"></i>
+                    </div>
+                    <div class="subfolder-content">
+                        <div class="modal-gallery">
+                            <img src="images/birthday presi.png" alt="Affiche Anniversaire Présidente">
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="color: var(--neon-pink); font-size: 1.1rem; margin: 35px 0 15px 0; font-family: var(--font-title); text-align: left; border-bottom: 1px solid var(--border-glass); padding-bottom: 5px;">
+                    🛍️ Branding, Mode & Curation Média
+                </h3>
+                <div class="modal-gallery">
+                    <img src="images/gtw affiche.png" alt="Affiche Get The Way">
+                    <img src="images/GTW DECLI.png" alt="Déclinaisons d'identité visuelle GTW">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-food" class="modal" onclick="closeModalOnBackdrop(event, 'modal-food')">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-food')">&times;</span>
+            <div class="modal-body">
+                <h2>Yummy & Tasty • Branding & Menu Officiel ✨</h2>
+                <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 25px;">L'univers visuel et la carte de mon entreprise culinaire.</p>
+                <div class="modal-gallery">
+                    <img src="images/Logo du restaurant Yummy & Tasty.png" alt="Logo Officiel Yummy & Tasty">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-photo" class="modal" onclick="closeModalOnBackdrop(event, 'modal-photo')">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-photo')">&times;</span>
+            <div class="modal-body">
+                <h2>Galerie Capture & Lumière 🌾</h2>
+                <p style="text-align: center; color: var(--text-muted); font-style: italic; margin-bottom: 25px;">Douceur des teintes • Esthétique minimale</p>
+                <div class="modal-gallery">
+                    <img src="images/WhatsApp Image 2026-05-19 at 21.39.12.jpeg" alt="Capture Photographie Originale Campbell">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="contact" class="section fullscreen reveal">
+        <div class="container contact-layout reveal-item">
+            <h2 class="contact-title">Let's build <br> an empire <br> together ✨</h2>
+            <div class="contact-card glass-card">
+                <p>Un projet ou une collaboration ? Écrivez-moi !</p>
+                
+                <a href="mailto:yoncampbellkabre@gmail.com?subject=Collaboration%20-%20Creative%20Studio" style="text-decoration: none;">
+                    <p style="margin: 15px 0; font-weight: 500; color: var(--neon-pink); display: inline-block; border-bottom: 1px dashed var(--neon-pink); padding-bottom: 2px;">
+                        ✉️ yoncampbellkabre@gmail.com
+                    </p>
+                </a>
+
+                <div class="social-links">
+                    <a href="#" target="_blank"><i class="ri-instagram-line"></i></a>
+                    <a href="#" target="_blank"><i class="ri-tiktok-line"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="logo">CREATIVE<span>STUDIO</span></div>
+            <p>&copy; 2026 CREATIVE STUDIO • Multitasking, Esthétique & Impact</p>
+            <p>Abidjan, Côte d'Ivoire 💖</p>
+        </div>
+    </footer>
+
+    <button id="backToTop" title="Remonter en haut">
+        <i class="ri-arrow-up-line"></i>
+    </button>
+
+    <script>
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            loader.style.opacity = '0';
+            loader.style.transition = 'opacity 0.6s ease';
+            setTimeout(() => {
+                loader.style.display = 'none';
+                document.body.classList.add('loaded');
+            }, 600);
+        });
+
+        let activeModalElement = null;
+
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            activeModalElement = modal.querySelector('.modal-content');
+            activeModalElement.addEventListener('scroll', checkScrollPosition);
+            checkScrollPosition();
+        }
+
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            
+            const subfolder = modal.querySelector('.subfolder-container');
+            if (subfolder) subfolder.classList.remove('active');
+
+            if (activeModalElement) {
+                activeModalElement.removeEventListener('scroll', checkScrollPosition);
+                activeModalElement = null;
+            }
+            checkScrollPosition();
+        }
+
+        function closeModalOnBackdrop(e, id) {
+            if (e.target.id === id) closeModal(id);
+        }
+
+        function toggleSubfolder(header) {
+            const container = header.parentElement;
+            container.classList.toggle('active');
+        }
+
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const sections = document.querySelectorAll('section');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+
+        const backToTopBtn = document.getElementById('backToTop');
+
+        function checkScrollPosition() {
+            if (activeModalElement) {
+                if (activeModalElement.scrollTop > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            } else {
+                if (window.pageYOffset > 400) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            }
+        }
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                if (window.pageYOffset >= section.offsetTop - 160) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) link.classList.add('active');
+            });
+
+            checkScrollPosition();
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            if (activeModalElement) {
+                activeModalElement.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            } else {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        });
+
+        const reveals = document.querySelectorAll('.reveal');
+        if (reveals.length > 0) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, { threshold: 0.1 });
+            reveals.forEach(reveal => observer.observe(reveal));
+        }
+
+        document.querySelector('.menu-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
